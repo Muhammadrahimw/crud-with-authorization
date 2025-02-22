@@ -24,7 +24,6 @@ const Login = () => {
 			}),
 		})
 			.then((data) => {
-				data.data[0];
 				localStorage.setItem(`token`, data.data[0].token);
 				router.push(`/products`);
 			})

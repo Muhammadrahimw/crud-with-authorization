@@ -55,7 +55,7 @@ export function DialogPost() {
 				<DialogHeader>
 					<DialogTitle>Add New Car</DialogTitle>
 					<DialogDescription>
-						Fill in the details below and click save when you're done.
+						Fill in the details below and click save when youre done.
 					</DialogDescription>
 				</DialogHeader>
 				<div className="grid gap-4 py-4">

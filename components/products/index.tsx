@@ -4,7 +4,6 @@ import {useFetchFunc} from "@/hooks/useFetch";
 import {useEffect, useState} from "react";
 import {Button} from "../ui/button";
 import {DialogPut} from "../editDialog";
-import {useRouter} from "next/navigation";
 
 export interface productType {
 	id: number;
@@ -15,8 +14,6 @@ export interface productType {
 }
 
 export const ProductsComponent = () => {
-	const router = useRouter();
-	const [data, setData] = useState<productType[]>([]);
 	const [filteredData, setFilteredData] = useState<productType[]>([]);
 	const axios = useFetchFunc();
 
@@ -29,7 +26,6 @@ export const ProductsComponent = () => {
 			},
 		})
 			.then((data) => {
-				setData(data.data);
 				setFilteredData(data.data);
 			})
 			.catch((error) => console.log(error));
@@ -44,7 +40,6 @@ export const ProductsComponent = () => {
 			},
 		})
 			.then((data) => {
-				setData(data.data);
 				setFilteredData(data.data);
 			})
 			.catch((error) => console.log(error));
@@ -68,7 +63,6 @@ export const ProductsComponent = () => {
 					},
 				})
 					.then((data) => {
-						setData(data.data);
 						setFilteredData(data.data);
 					})
 					.catch((error) => console.log(error));

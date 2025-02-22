@@ -3,22 +3,6 @@
 import {useFetchFunc} from "@/hooks/useFetch";
 import {useRouter} from "next/navigation";
 import {useRef} from "react";
-const a = {
-	status: 200,
-	message: "success",
-	data: [
-		{
-			id: 14,
-			name: "Karim",
-			email: "karim8@gmail.com",
-			password: "12345",
-		},
-		{
-			token:
-				"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6MTc0MDIxNzcxOSwiZXhwIjoxNzQwMjE5NTE5fQ.KLk3c986kfUtMH2Y2DK3mdvhECyT6iNnL-h78UG0PXA",
-		},
-	],
-};
 
 const Register = () => {
 	const nameRef = useRef<HTMLInputElement>(null);

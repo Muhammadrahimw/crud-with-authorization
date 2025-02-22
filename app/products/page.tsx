@@ -7,11 +7,11 @@ import {useRouter} from "next/navigation";
 import {useEffect} from "react";
 
 const Products = () => {
+	const router = useRouter();
 	useEffect(() => {
 		const token = localStorage.getItem(`token`);
 		if (!token) router.push(`/sign-in`);
-	}, []);
-	const router = useRouter();
+	}, [router]);
 	const logoutFunc = () => {
 		localStorage.removeItem(`token`);
 		router.push(`/sign-in`);
