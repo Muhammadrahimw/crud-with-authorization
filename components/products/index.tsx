@@ -17,7 +17,7 @@ export const ProductsComponent = () => {
 	const [filteredData, setFilteredData] = useState<productType[]>([]);
 	const axios = useFetchFunc();
 
-	const fetchProducts = () => {
+	const axiosGetFunc = () => {
 		const token = localStorage.getItem(`token`) || "";
 		axios({
 			url: `/products`,
@@ -29,6 +29,10 @@ export const ProductsComponent = () => {
 				setFilteredData(data.data);
 			})
 			.catch((error) => console.log(error));
+	};
+
+	const fetchProducts = () => {
+		axiosGetFunc();
 	};
 
 	useEffect(() => {
@@ -56,16 +60,7 @@ export const ProductsComponent = () => {
 		})
 			.then((data) => {
 				console.log(data);
-				axios({
-					url: `/products`,
-					headers: {
-						Authorization: `Bearer ${token}`,
-					},
-				})
-					.then((data) => {
-						setFilteredData(data.data);
-					})
-					.catch((error) => console.log(error));
+				axiosGetFunc();
 			})
 			.catch((error) => console.log(error));
 	};

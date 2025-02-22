@@ -15,13 +15,20 @@ import {Input} from "@/components/ui/input";
 import {Label} from "@/components/ui/label";
 import {useFetchFunc} from "@/hooks/useFetch";
 
+type ProductType = {
+	brand: string;
+	type: string;
+	model: string;
+	year: number;
+};
+
 export function DialogPut({
 	productId,
 	existingData,
 	onUpdate,
 }: {
 	productId: number;
-	existingData: any;
+	existingData: ProductType;
 	onUpdate?: () => void;
 }) {
 	const nameRef = useRef<HTMLInputElement>(null);
@@ -31,7 +38,6 @@ export function DialogPut({
 	const [putOpen, setPutOpen] = useState<boolean>(false);
 	const axios = useFetchFunc();
 
-	// Eski ma'lumotlarni inputlarga o‘rnatish
 	useEffect(() => {
 		if (
 			existingData &&
@@ -47,7 +53,6 @@ export function DialogPut({
 		}
 	}, [existingData]);
 
-	// PUT so‘rovini jo‘natish
 	const handleUpdate = () => {
 		const token = localStorage.getItem(`token`);
 		const updatedData = {
@@ -65,7 +70,7 @@ export function DialogPut({
 		})
 			.then(() => {
 				setPutOpen(false);
-				if (onUpdate) onUpdate(); // UI ni yangilash
+				if (onUpdate) onUpdate();
 			})
 			.catch((error) => console.log(error));
 	};
@@ -84,60 +89,45 @@ export function DialogPut({
 				</DialogHeader>
 				<div className="grid gap-4 py-4">
 					<div className="grid grid-cols-4 items-center gap-4">
-						<Label htmlFor="name" className="text-right">
-							{" "}
-							Name{" "}
-						</Label>
+						<Label htmlFor="name" className="text-right"> Name </Label>
 						<Input
 							id="name"
 							ref={nameRef}
-							defaultValue={existingData?.brand}
+							defaultValue={existingData?.brand} // 🔥 Default value qaytadan qo‘shildi
 							className="col-span-3"
 						/>
 					</div>
 					<div className="grid grid-cols-4 items-center gap-4">
-						<Label htmlFor="category" className="text-right">
-							{" "}
-							Category{" "}
-						</Label>
+						<Label htmlFor="category" className="text-right"> Category </Label>
 						<Input
 							id="category"
 							ref={categoryRef}
-							defaultValue={existingData?.type}
+							defaultValue={existingData?.type} // 🔥 Default value qaytadan qo‘shildi
 							className="col-span-3"
 						/>
 					</div>
 					<div className="grid grid-cols-4 items-center gap-4">
-						<Label htmlFor="model" className="text-right">
-							{" "}
-							Model{" "}
-						</Label>
+						<Label htmlFor="model" className="text-right"> Model </Label>
 						<Input
 							id="model"
 							ref={modelRef}
-							defaultValue={existingData?.model}
+							defaultValue={existingData?.model} // 🔥 Default value qaytadan qo‘shildi
 							className="col-span-3"
 						/>
 					</div>
 					<div className="grid grid-cols-4 items-center gap-4">
-						<Label htmlFor="year" className="text-right">
-							{" "}
-							Year{" "}
-						</Label>
+						<Label htmlFor="year" className="text-right"> Year </Label>
 						<Input
 							id="year"
 							ref={yearRef}
-							defaultValue={existingData?.year}
+							defaultValue={existingData?.year.toString()} // 🔥 Default value qaytadan qo‘shildi
 							type="number"
 							className="col-span-3"
 						/>
 					</div>
 				</div>
 				<DialogFooter>
-					<Button type="button" onClick={handleUpdate}>
-						{" "}
-						Save Changes{" "}
-					</Button>
+					<Button type="button" onClick={handleUpdate}> Save Changes </Button>
 				</DialogFooter>
 			</DialogContent>
 		</Dialog>
